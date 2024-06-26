@@ -42,13 +42,12 @@ const unsigned char string4[] = "Hello Bank 4@";
 const unsigned char string5[] = "Hello Bank 5@";
 
 #pragma code-name(push, "CODE0") //Fixed Bank 0x8000
-
 void draw_text(word addr, char *text) {
-  byte x = 0;
+  byte tx = 0;
   vram_adr(addr);
-  for (x = 0; text[x]!='@'; ++x)
+  for (tx = 0; text[tx]!='@'; ++tx)
   {
-    vram_put(text[x]);
+    vram_put(text[tx]);
   }
 }
 
@@ -119,12 +118,10 @@ void main (void)
   while (1)
   {
     ++x;
-    if (x > 32)
+    if (x > 8)
       x = 0;
-    delay(60);
+    delay(15);
     pal_col(0,x);
-    pal_col(1,0x04);
-    pal_col(2,0x20);
-    pal_col(3,0x30);
+    
   }
 }
