@@ -86,15 +86,19 @@ void FunctionCODE5()
 }
 
 #pragma code-name(push, "CODE")
+byte x;
+
 void main (void) 
 {
-  byte x = 0;
-  MMC3_PRG_8000(0); //Fixed Bank?
-  MMC3_PRG_A000(3); //Swapable Bank
+  int *sp = (int*)0x0024;
+  sp[0] = 0x0500;
+  
+  //MMC3_PRG_8000(0); //Fixed Bank?
+  //MMC3_PRG_A000(3); //Swapable Bank
   
   pal_bg(palette_bg);
   vram_adr(NTADR_A(2,1));
-  
+  {
   for (x = 0; debugString[x]!='@';++x)
     vram_put(debugString[x]);
   
@@ -123,5 +127,6 @@ void main (void)
     delay(15);
     pal_col(0,x);
     
+  }
   }
 }
